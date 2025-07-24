@@ -96,6 +96,7 @@ describe('AuthService', () => {
     service.validateUser = mockValidateUser;
     const result = await service.login('a@b.com', 'pw');
     expect(result).toEqual({ access_token: 'signed-jwt' });
+    // eslint-disable-next-line @typescript-eslint/unbound-method
     expect(jwtService.sign).toHaveBeenCalledWith({ sub: 1, email: 'a@b.com' });
     expect(mockValidateUser).toHaveBeenCalledWith('a@b.com', 'pw');
   });
