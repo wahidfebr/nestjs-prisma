@@ -41,6 +41,6 @@ jobs:
             npm run build
             npm run generate
             npm run migrate:prod
-            pm2 restart ecosystem.config.js
+            pm2 startOrReload ecosystem.config.js
           EOF
         shell: bash
