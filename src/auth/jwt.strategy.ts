@@ -9,7 +9,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       ignoreExpiration: false,
-      secretOrKey: 'supersecretkey', // Use env in production
+      secretOrKey: 'supersecretkey',
     });
   }
 
@@ -18,7 +18,6 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     if (!user) {
       return null;
     }
-    // Attach user to request
     return { id: user.id, email: user.email, name: user.name };
   }
 }
