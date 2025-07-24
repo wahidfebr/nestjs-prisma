@@ -1,7 +1,7 @@
 import { Controller, Get, Req } from '@nestjs/common';
 import { Request } from 'express';
 
-@Controller('user')
+@Controller({ path: 'user', version: '1.0' })
 export class UserController {
   @Get('profile')
   getProfile(@Req() req: Request) {
