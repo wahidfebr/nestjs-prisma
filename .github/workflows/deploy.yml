@@ -36,6 +36,17 @@ jobs:
             npm -v
             pm2 -v
 
+            # Create .env file directly on VPS (Fixed heredoc)                                               
+            cat > .env << 'ENV_EOF'                                                                          
+            ${{ secrets.ENV }}                                                                                 
+            ENV_EOF        
+
+            # Secure the file                                                                                
+            chmod 600 .env     
+
+            # Verify .env was created correctly                                                       
+            echo "✅ Environment file created with $(wc -l < .env) lines" 
+
             git pull origin main
             npm ci
             npm run build
