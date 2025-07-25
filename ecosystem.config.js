@@ -8,7 +8,7 @@ module.exports = {
       autorestart: true,
       watch: false,
       max_memory_restart: '500M',
-      env_file: '.env',
+      node_args: '--env-file=.env',
       env: {
         NODE_ENV: 'production',
       },
