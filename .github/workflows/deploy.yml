@@ -37,9 +37,7 @@ jobs:
             pm2 -v
 
             # Create .env file directly on VPS (Fixed heredoc)                                               
-            cat > .env << 'ENV_EOF'                                                                          
-            ${{ secrets.ENV }}                                                                                 
-            ENV_EOF        
+            printf '%s\n' '${{ secrets.ENV }}' > .env   
 
             # Secure the file                                                                                
             chmod 600 .env     
