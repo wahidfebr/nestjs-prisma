@@ -4,4 +4,5 @@ generated
 node_modules
 
 .env
+.env.production
 forge.yaml
