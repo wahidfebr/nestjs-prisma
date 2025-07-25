@@ -4,13 +4,14 @@ import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 import { UserModule } from '../user/user.module';
 import { JwtStrategy } from './jwt.strategy';
+import { env } from '../env';
 
 @Module({
   imports: [
     UserModule,
     JwtModule.register({
-      secret: 'supersecretkey',
-      signOptions: { expiresIn: '5m' },
+      secret: env.JWT_SECRET,
+      signOptions: { expiresIn: env.JWT_EXPIRATION },
     }),
   ],
   providers: [AuthService, JwtStrategy],

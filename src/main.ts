@@ -1,3 +1,4 @@
+import { env } from './env';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import helmet from 'helmet';
@@ -45,9 +46,10 @@ async function bootstrap() {
     logger.fatal('Uncaught Exception:', error.stack);
   });
 
-  const APP_PORT = process.env.APP_PORT ?? 3000;
-  await app.listen(APP_PORT, () => {
-    logger.verbose(`nestjs running at http://localhost:${APP_PORT}`);
+  await app.listen(env.APP_PORT, () => {
+    logger.verbose(
+      `${env.APP_NAME} [${env.APP_ENV}] running at http://localhost:${env.APP_PORT} on hostname ${env.HOSTNAME}`,
+    );
   });
 }
 void bootstrap();

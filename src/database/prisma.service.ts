@@ -1,5 +1,6 @@
 import { Injectable, OnModuleInit, OnModuleDestroy } from '@nestjs/common';
 import { PrismaClient } from '../../generated/prisma';
+import { env } from '../env';
 
 @Injectable()
 export class PrismaService
@@ -7,9 +8,9 @@ export class PrismaService
   implements OnModuleInit, OnModuleDestroy
 {
   constructor() {
-    const baseUrl = process.env.DATABASE_URL;
-    const appName = `nestjs-prisma-${process.env.NODE_ENV || 'dev'}-${process.env.HOSTNAME || 'unknown'}`;
-    const url = new URL(baseUrl!);
+    const baseUrl = env.DATABASE_URL;
+    const appName = `${env.APP_NAME}-${env.APP_ENV}-${env.HOSTNAME}`;
+    const url = new URL(baseUrl);
     url.searchParams.set('application_name', appName);
 
     super({
