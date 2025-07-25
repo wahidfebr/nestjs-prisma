@@ -20,6 +20,12 @@ async function bootstrap() {
 
   app.getHttpAdapter().getInstance().disable('x-powered-by');
   app.use(helmet());
+  app.enableCors({
+    origin: [`http://localhost:${env.APP_PORT}`],
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
+  });
 
   app.enableShutdownHooks();
   app.setGlobalPrefix('api');
